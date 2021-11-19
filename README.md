@@ -4,7 +4,7 @@
 [![Python 3.6](https://img.shields.io/badge/python-3.6-blue.svg)](https://www.python.org/downloads/release/python-360/)   
 
 ## [Watch Tutorial for this project](https://youtu.be/HTSDryllx0Y)
-<img src="https://github.com/Spidy20/Text_to_Handwritten_Text_Converter/blob/master/yt_thumb.jpg">
+<img src="https://github.com/Spidy20/Fruit_Vegetable_Recognition/blob/master/yt_thumb.jpg">
 
 ## Usage:-
 
@@ -28,8 +28,8 @@
 
 ## Screenshots
 
-<img src="https://github.com/Spidy20/Text_to_Handwritten_Text_Converter/blob/master/t1.png">
-<img src="https://github.com/Spidy20/Text_to_Handwritten_Text_Converter/blob/master/t2.PNG">
+<img src="https://github.com/Spidy20/Fruit_Vegetable_Recognition/blob/master/sc1.PNG">
+<img src="https://github.com/Spidy20/Fruit_Vegetable_Recognition/blob/master/sc2.PNG">
 
 
 ## Just follow☝️ me and Star⭐ my repository 
