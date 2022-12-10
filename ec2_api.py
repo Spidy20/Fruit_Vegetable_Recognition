@@ -14,7 +14,7 @@ labels = {0: 'apple', 1: 'banana', 2: 'beetroot', 3: 'bell pepper', 4: 'cabbage'
 
 
 def prepare_image(img_path):
-    img = load_img("./upload_images/test.jpg", target_size=(224, 224, 3))
+    img = load_img(img_path, target_size=(224, 224, 3))
     img = img_to_array(img)
     img = img / 255
     img = np.expand_dims(img, [0])
@@ -38,9 +38,10 @@ def infer_image():
 
     file = request.files.get('file')
     img_bytes = file.read()
-    with open("./upload_images/test.jpg", "wb") as img:
+    img_path = "./upload_images/test.jpg"
+    with open(img_path, "wb") as img:
         img.write(img_bytes)
-    result = prepare_image(img_bytes)
+    result = prepare_image(img_path)
     return jsonify(prediction=result)
 
 
