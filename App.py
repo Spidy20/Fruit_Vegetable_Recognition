@@ -2,7 +2,11 @@ import streamlit as st
 from PIL import Image
 import requests
 from bs4 import BeautifulSoup
+import numpy as np
+from keras.preprocessing.image import load_img, img_to_array
+from keras.models import load_model
 
+model = load_model('FV.h5')
 
 labels = {0: 'apple', 1: 'banana', 2: 'beetroot', 3: 'bell pepper', 4: 'cabbage', 5: 'capsicum', 6: 'carrot',
           7: 'cauliflower', 8: 'chilli pepper', 9: 'corn', 10: 'cucumber', 11: 'eggplant', 12: 'garlic', 13: 'ginger',
@@ -30,6 +34,21 @@ def fetch_calories(prediction):
         print(e)
 
 
+def prepare_image(img_path):
+    img = load_img(img_path, target_size=(224, 224, 3))
+    img = img_to_array(img)
+    img = img / 255
+    img = np.expand_dims(img, [0])
+    answer = model.predict(img)
+    y_class = answer.argmax(axis=-1)
+    print(y_class)
+    y = " ".join(str(x) for x in y_class)
+    y = int(y)
+    res = labels[y]
+    print(res)
+    return res.capitalize()
+
+
 def run():
     st.title("Fruits🍍-Vegetable🍅 Classification")
     img_file = st.file_uploader("Choose an Image", type=["jpg", "png"])
@@ -42,13 +61,7 @@ def run():
 
         # if st.button("Predict"):
         if img_file is not None:
-            # result = processed_img(save_image_path)
-            url = 'http://192.168.1.5:5000/predict'
-            form_data = {'file': open(save_image_path, 'rb')}
-            resp = requests.post(url, files=form_data)
-            resp_dict = resp.json()
-            result = resp_dict['prediction']
-            print(result)
+            result = prepare_image(save_image_path)
             if result in vegetables:
                 st.info('**Category : Vegetables**')
             else:
